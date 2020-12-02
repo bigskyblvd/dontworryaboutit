@@ -2,4 +2,4 @@
 read the title
 
 
-Mortgages and economic bullshit or something, idk, why are you looking. 
+Mortgages and stuff or something, who knows, why are you looking anyway. 
