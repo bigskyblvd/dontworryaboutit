@@ -1,20 +1,30 @@
 library(tidyverse)
 library(ggplot2)
 
-# reading the csv price data files into R 
+
+################################################################
+# Currently this is just a terrible simple beta script for     #
+# an individual stock that I threw together quickly, need to   #
+# come up with something better as well as systematic for the  # 
+# total market - - - Need to format this better because this   #
+# looks ugly too                                               #
+################################################################
+
+
+# reading the csv price data files into R
 
 stock.price.data <- read_csv(file = 'somestockpricedata.csv')
 sp500.price.data <- read_csv(file = 'S&P.csv')
 
-# calculating some shit
+# coverting the stock data
 
 close.price.stock <- as.numeric(stock.price.data$Close)
 
-date.stock <- as.Date(stock.price.data$Date)
+date.stock <- as.Date(stock.price.data$Date) #do I really need the data for both? 
 
 daily.returns.log.stock <- diff(log(close.price.stock))
 
-expected.value.stock <- mean(daily.returns.log.stock)
+mean.stock <- mean(daily.returns.log.stock)
 
 var.stock <- var(daily.returns.log.stock)
 
@@ -26,14 +36,14 @@ date.sp500 <- as.Date(sp500.price.data$Date)
 
 daily.sp500.log.returns <- diff(log(close.price.sp500))
 
-expected.value.sp500 <- mean(daily.sp500.log.returns)
+mean.sp500 <- mean(daily.sp500.log.returns)
 
 var.sp500 <- var(daily.sp500.log.returns)
 
-# calculating beta
+# calculating the beta of x stock
 
-covariance <- cov(daily.sp500.log.returns, daily.returns.log.stock)
+covariance.beta <- cov(daily.sp500.log.returns, daily.returns.log.stock)
 
-beta <- covariance / var.sp500 
+beta <- covariance.beta / var.sp500 
 
 print(beta)
